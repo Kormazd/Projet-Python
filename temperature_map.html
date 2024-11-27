@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_d3c6473420254622721fcd02c6d35046 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_d3c6473420254622721fcd02c6d35046" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_d3c6473420254622721fcd02c6d35046 = L.map(
+                "map_d3c6473420254622721fcd02c6d35046",
+                {
+                    center: [46.603354, 1.888334],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 6,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_2e566db8697f388ed4c05faa147e8ad5 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors", "detectRetina": false, "maxNativeZoom": 19, "maxZoom": 19, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            );
+        
+    
+            tile_layer_2e566db8697f388ed4c05faa147e8ad5.addTo(map_d3c6473420254622721fcd02c6d35046);
+        
+    
+            var circle_marker_ec7275bea98d5d54efade49d1ef1fa30 = L.circleMarker(
+                [45.477569375992054, 6.442832930308782],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_d3c6473420254622721fcd02c6d35046);
+        
+    
+        var popup_c692fef02a4da6465fcd7f11a373432b = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_2692821009874b2d2560e9eb5b300191 = $(`<div id="html_2692821009874b2d2560e9eb5b300191" style="width: 100.0%; height: 100.0%;">Département: Savoie<br>Température Moyenne: 15.18°C</div>`)[0];
+                popup_c692fef02a4da6465fcd7f11a373432b.setContent(html_2692821009874b2d2560e9eb5b300191);
+            
+        
+
+        circle_marker_ec7275bea98d5d54efade49d1ef1fa30.bindPopup(popup_c692fef02a4da6465fcd7f11a373432b)
+        ;
+
+        
+    
+    
+            var circle_marker_9ef07b29946c56714d4c50dfee72f0c0 = L.circleMarker(
+                [50.4937907485059, 2.2863697683853377],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_d3c6473420254622721fcd02c6d35046);
+        
+    
+        var popup_97ab008b66162d23c07524058d4eae75 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_b0ad90344c7a720ca0057d9ae2b39968 = $(`<div id="html_b0ad90344c7a720ca0057d9ae2b39968" style="width: 100.0%; height: 100.0%;">Département: Pas-de-Calais<br>Température Moyenne: 12.25°C</div>`)[0];
+                popup_97ab008b66162d23c07524058d4eae75.setContent(html_b0ad90344c7a720ca0057d9ae2b39968);
+            
+        
+
+        circle_marker_9ef07b29946c56714d4c50dfee72f0c0.bindPopup(popup_97ab008b66162d23c07524058d4eae75)
+        ;
+
+        
+    
+    
+            var circle_marker_b4394e65bb6aa1757a9eaed15d3a956c = L.circleMarker(
+                [46.778243081472795, 1.5759054970037312],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_d3c6473420254622721fcd02c6d35046);
+        
+    
+        var popup_16c14ffc262569f44d80207bad0176d5 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_6b8a5525fc8f95470f5e33649c087eba = $(`<div id="html_6b8a5525fc8f95470f5e33649c087eba" style="width: 100.0%; height: 100.0%;">Département: Indre<br>Température Moyenne: 14.45°C</div>`)[0];
+                popup_16c14ffc262569f44d80207bad0176d5.setContent(html_6b8a5525fc8f95470f5e33649c087eba);
+            
+        
+
+        circle_marker_b4394e65bb6aa1757a9eaed15d3a956c.bindPopup(popup_16c14ffc262569f44d80207bad0176d5)
+        ;
+
+        
+    
+    
+            var circle_marker_95189118411745170de3663780a47022 = L.circleMarker(
+                [43.441656082006524, 6.2444903813087596],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_d3c6473420254622721fcd02c6d35046);
+        
+    
+        var popup_9cef15db8a815176764b0e620b403a6d = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_92b40d1be5276bea8f4433401a4fb503 = $(`<div id="html_92b40d1be5276bea8f4433401a4fb503" style="width: 100.0%; height: 100.0%;">Département: Var<br>Température Moyenne: 20.42°C</div>`)[0];
+                popup_9cef15db8a815176764b0e620b403a6d.setContent(html_92b40d1be5276bea8f4433401a4fb503);
+            
+        
+
+        circle_marker_95189118411745170de3663780a47022.bindPopup(popup_9cef15db8a815176764b0e620b403a6d)
+        ;
+
+        
+    
+    
+            var circle_marker_9d37e7185ac30635306b7b77f2cc8354 = L.circleMarker(
+                [48.26185032073284, -4.060904499045975],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_d3c6473420254622721fcd02c6d35046);
+        
+    
+        var popup_20be97b9d1cd138b77ef409122f4c7fb = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_08feac707f691e738d999c92c7620805 = $(`<div id="html_08feac707f691e738d999c92c7620805" style="width: 100.0%; height: 100.0%;">Département: Finistère<br>Température Moyenne: 11.63°C</div>`)[0];
+                popup_20be97b9d1cd138b77ef409122f4c7fb.setContent(html_08feac707f691e738d999c92c7620805);
+            
+        
+
+        circle_marker_9d37e7185ac30635306b7b77f2cc8354.bindPopup(popup_20be97b9d1cd138b77ef409122f4c7fb)
+        ;
+
+        
+    
+    
+            var circle_marker_0069e51375cd8b8101f5fb4874c827cd = L.circleMarker(
+                [47.4256125475601, 4.771662340469815],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_d3c6473420254622721fcd02c6d35046);
+        
+    
+        var popup_6d0f4742210f64fbe8a2098ef04967b6 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_03858a3ff10e577a5e5f77040f54af0c = $(`<div id="html_03858a3ff10e577a5e5f77040f54af0c" style="width: 100.0%; height: 100.0%;">Département: Côte-d'Or<br>Température Moyenne: 13.45°C</div>`)[0];
+                popup_6d0f4742210f64fbe8a2098ef04967b6.setContent(html_03858a3ff10e577a5e5f77040f54af0c);
+            
+        
+
+        circle_marker_0069e51375cd8b8101f5fb4874c827cd.bindPopup(popup_6d0f4742210f64fbe8a2098ef04967b6)
+        ;
+
+        
+    
+    
+            var circle_marker_4962d91183a42d5c1f439f1fd823a513 = L.circleMarker(
+                [47.4256125475601, 4.771662340469815],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_d3c6473420254622721fcd02c6d35046);
+        
+    
+        var popup_25af94476c3d5eecf5e0a3266040b423 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_3157e08edf375932b04dfa16e5ca3fa7 = $(`<div id="html_3157e08edf375932b04dfa16e5ca3fa7" style="width: 100.0%; height: 100.0%;">Département: Côte-d'Or<br>Température Moyenne: 14.25°C</div>`)[0];
+                popup_25af94476c3d5eecf5e0a3266040b423.setContent(html_3157e08edf375932b04dfa16e5ca3fa7);
+            
+        
+
+        circle_marker_4962d91183a42d5c1f439f1fd823a513.bindPopup(popup_25af94476c3d5eecf5e0a3266040b423)
+        ;
+
+        
+    
+    
+            var circle_marker_70b903d1055efbdbdc3e2c970d37819a = L.circleMarker(
+                [47.38986184742103, -0.5594136157565185],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_d3c6473420254622721fcd02c6d35046);
+        
+    
+        var popup_86ab5d2443c94f90eb6cd4121891c91f = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_3c78041ceaaa7876a33c02cc59fa7fa6 = $(`<div id="html_3c78041ceaaa7876a33c02cc59fa7fa6" style="width: 100.0%; height: 100.0%;">Département: Maine-et-Loire<br>Température Moyenne: 9.75°C</div>`)[0];
+                popup_86ab5d2443c94f90eb6cd4121891c91f.setContent(html_3c78041ceaaa7876a33c02cc59fa7fa6);
+            
+        
+
+        circle_marker_70b903d1055efbdbdc3e2c970d37819a.bindPopup(popup_86ab5d2443c94f90eb6cd4121891c91f)
+        ;
+
+        
+    
+    
+            var circle_marker_119a373688b6f382eef5053403e7d8d0 = L.circleMarker(
+                [44.51753664365561, 3.4997035592483896],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_d3c6473420254622721fcd02c6d35046);
+        
+    
+        var popup_0497e3d4555f6ad04c64629895a64600 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_30803780664cde9e329f6e93e7b617b7 = $(`<div id="html_30803780664cde9e329f6e93e7b617b7" style="width: 100.0%; height: 100.0%;">Département: Lozère<br>Température Moyenne: 13.1°C</div>`)[0];
+                popup_0497e3d4555f6ad04c64629895a64600.setContent(html_30803780664cde9e329f6e93e7b617b7);
+            
+        
+
+        circle_marker_119a373688b6f382eef5053403e7d8d0.bindPopup(popup_0497e3d4555f6ad04c64629895a64600)
+        ;
+
+        
+    
+    
+            var circle_marker_040aec293acd1c2c539c5ec10d0644f1 = L.circleMarker(
+                [44.51753664365561, 3.4997035592483896],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_d3c6473420254622721fcd02c6d35046);
+        
+    
+        var popup_74217a7195b77a6e12f06c37734a29c9 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_3909a2baadc1ff3be03334ccfa308e09 = $(`<div id="html_3909a2baadc1ff3be03334ccfa308e09" style="width: 100.0%; height: 100.0%;">Département: Lozère<br>Température Moyenne: 10.55°C</div>`)[0];
+                popup_74217a7195b77a6e12f06c37734a29c9.setContent(html_3909a2baadc1ff3be03334ccfa308e09);
+            
+        
+
+        circle_marker_040aec293acd1c2c539c5ec10d0644f1.bindPopup(popup_74217a7195b77a6e12f06c37734a29c9)
+        ;
+
+        
+    
+</script>
+</html>
