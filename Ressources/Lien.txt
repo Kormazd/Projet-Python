@@ -3,8 +3,10 @@ https://public.opendatasoft.com/explore/dataset/donnees-synop-essentielles-omm/i
 
 
 
-
+IDEES DE MAP
+https://public.tableau.com/app/profile/pierre5058/viz/TempraturesmoyennesmensuellesenFrancepardpartement/Tmoyennepardpartement
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////// MEILLEUR LIEN POUR L'INSTANT
 https://www.data.gouv.fr/fr/datasets/temperature-quotidienne-regionale-depuis-janvier-2016/
+https://www.data.gouv.fr/fr/datasets/temperature-quotidienne-departementale-depuis-janvier-2018/
