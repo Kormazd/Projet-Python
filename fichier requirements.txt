@@ -1,1 +1,1 @@
-pip install pandas dash plotly
+pip install pandas geopandas dash plotly

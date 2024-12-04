@@ -7,6 +7,6 @@ IDEES DE MAP
 https://public.tableau.com/app/profile/pierre5058/viz/TempraturesmoyennesmensuellesenFrancepardpartement/Tmoyennepardpartement
 
 
-/////////////////////////////////////////////////////////////////////////////////////////////// MEILLEUR LIEN POUR L'INSTANT
-https://www.data.gouv.fr/fr/datasets/temperature-quotidienne-regionale-depuis-janvier-2016/
+/////////////////////////////////////////////////////////////////////////////////////////////// LIENS UTILISES
 https://www.data.gouv.fr/fr/datasets/temperature-quotidienne-departementale-depuis-janvier-2018/
+https://github.com/gregoiredavid/france-geojson/blob/master/departements-version-simplifiee.geojson
