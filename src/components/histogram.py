@@ -13,7 +13,6 @@ def update_histogram(selected_departement):
         daily_avg_temp,
         x='Date',
         y='TMoy (°C)',
-        title=f'Évolution des Températures - {selected_departement}',
         labels={'TMoy (°C)': 'Température Moyenne (°C)', 'Date': 'Date'},
         line_shape='linear'
     )

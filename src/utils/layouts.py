@@ -1,8 +1,6 @@
 from dash import dcc, html
-from dash.dependencies import Input, Output
-import plotly.express as px
-from src.histogram import update_histogram, temperature_df as histogram_df
-from src.map import update_map, temperature_df as map_df, geojson_data
+from src.components.histogram import temperature_df as histogram_df
+from src.components.map import temperature_df as map_df
 
 # Layout principal
 def create_layout():
@@ -37,7 +35,7 @@ def histogram_layout():
         dcc.Graph(id='temperature-histogram'),
     ])
 
-# Layout  carte
+# Layout carte
 def map_layout():
     return html.Div([
         html.H1("Carte des Températures en France", style={'textAlign': 'center'}),
@@ -50,32 +48,3 @@ def map_layout():
         ),
         dcc.Graph(id='temperature-map'),
     ])
-
-# Configuration des callbacks
-def register_callbacks(app):
-    # Callback pour cahnger d'onglets
-    @app.callback(
-        Output('page-content', 'children'),
-        [Input('navigation-tabs', 'value')]
-    )
-    def display_page(tab_value):
-        if tab_value == "histogram":
-            return histogram_layout()
-        elif tab_value == "map":
-            return map_layout()
-
-    # Callback histogramme
-    @app.callback(
-        Output('temperature-histogram', 'figure'),
-        [Input('departement-dropdown', 'value')]
-    )
-    def update_histogram_wrapper(selected_departement):
-        return update_histogram(selected_departement)
-
-    # Callback carte
-    @app.callback(
-        Output('temperature-map', 'figure'),
-        [Input('date-picker', 'date')]
-    )
-    def update_map_wrapper(selected_date):
-        return update_map(selected_date)
