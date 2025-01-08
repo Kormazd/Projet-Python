@@ -2,6 +2,9 @@ import pandas as pd
 import json
 import plotly.express as px
 
+MAP_HEIGHT = 500
+MAP_WIDTH = 500
+
 file_path = 'data/raw/temperature-quotidienne-departementale.csv'
 temperature_df = pd.read_csv(file_path, delimiter=';')
 temperature_df['Date'] = pd.to_datetime(temperature_df['Date'])
@@ -30,18 +33,19 @@ def update_map(selected_date):
         color='TMoy (°C)',
         mapbox_style="carto-positron",
         color_continuous_scale=custom_colorscale,
-        zoom=4.7,
-        center={"lat": 46.603354, "lon": 1.888334},
+        zoom=4.2,
+        center={"lat": 46.603354, "lon": 2.5},
         hover_data={'Département': True, 'TMoy (°C)': ':.1f', 'TMin (°C)': ':.1f', 'TMax (°C)': ':.1f'}
     )
     fig.data[0].hovertemplate = (
-        "<u><b>%{customdata[0]}</b></u><br>"  # Nom du département
-        "<b>🌡️ Moyenne:</b> %{customdata[1]:.1f}°C<br>"  # TMoy
-        "<b>🌡️ Minimale:</b> %{customdata[2]:.1f}°C<br>"  # TMin
-        "<b>🌡️ Maximale:</b> %{customdata[3]:.1f}°C<extra></extra>"  # TMax
+        "<u><b>%{customdata[0]}</b></u><br>"
+        "<b>🌡️ Moyenne:</b> %{customdata[1]:.1f}°C<br>"
+        "<b>🌡️ Minimale:</b> %{customdata[2]:.1f}°C<br>"
+        "<b>🌡️ Maximale:</b> %{customdata[3]:.1f}°C<extra></extra>"
     )
     fig.update_layout(
         margin={"r": 0, "t": 0, "l": 0, "b": 0},
-        height=600
+        height=MAP_HEIGHT,
+        width=MAP_WIDTH
     )
     return fig

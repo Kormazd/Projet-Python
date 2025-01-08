@@ -2,11 +2,14 @@ import pandas as pd
 from dash.dependencies import Input, Output
 import plotly.express as px
 
+BARG_HEIGHT = 300
+BARG_WIDTH = 1000
+
 file_path = 'data/raw/temperature-quotidienne-departementale.csv'
 temperature_df = pd.read_csv(file_path, delimiter=';')
 temperature_df['Date'] = pd.to_datetime(temperature_df['Date'])
 
-def update_histogram(selected_departement):
+def update_bargraph(selected_departement):
     filtered_df = temperature_df[temperature_df['Département'] == selected_departement]
     daily_avg_temp = filtered_df.groupby('Date')['TMoy (°C)'].mean().reset_index()
     
@@ -18,12 +21,12 @@ def update_histogram(selected_departement):
         line_shape='linear'
     )
     
-    # Ajustement dynamique avec une hauteur minimum pour éviter les sauts de taille trop brusques
     fig.update_layout(
         xaxis_title='Date',
         yaxis_title='Température Moyenne (°C)',
         autosize=True,
-        height=max(500, min(900, len(daily_avg_temp) * 10)),  # Hauteur dynamique entre 500px et 900px
+        height=BARG_HEIGHT,
+        width=BARG_WIDTH,
         margin=dict(l=20, r=20, t=40, b=40)
     )
     return fig

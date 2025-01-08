@@ -1,6 +1,10 @@
 from dash import dcc, html
-from src.components.barres_graphe import temperature_df as histogram_df
-from src.components.map import temperature_df as map_df
+from src.components.bar_graph import BARG_HEIGHT, BARG_WIDTH, temperature_df as bargraph_df
+from src.components.map import MAP_HEIGHT, MAP_WIDTH, temperature_df as map_df
+
+PADDING = 30
+BORDER_RADIUS = 10
+BOX_SHADOW = "0 6px 12px rgba(0, 0, 0, 0.1)"
 
 def centralized_layout():
     return html.Div([
@@ -13,21 +17,22 @@ def centralized_layout():
             html.H2("Évolution des Températures", style={'color': '#444'}),
             dcc.Dropdown(
                 id='departement-dropdown',
-                options=[{'label': dept, 'value': dept} for dept in sorted(histogram_df['Département'].unique())],
-                value=sorted(histogram_df['Département'].unique())[0],
+                options=[{'label': dept, 'value': dept} for dept in sorted(bargraph_df['Département'].unique())],
+                value=sorted(bargraph_df['Département'].unique())[0],
                 placeholder="Sélectionnez un département",
             ),
-            dcc.Graph(id='temperature-histogram', style={
-                'height': '700px', 
-                'border': '1px solid #ddd', 
-                'borderRadius': '10px'
+            dcc.Graph(id='temperature-bargraph', style={
+                'height': BARG_HEIGHT,
+                'border': '1px solid #ddd',
+                'borderRadius': BORDER_RADIUS
             }),
         ], style={
-            'gridColumn': '1 / span 2', 
-            'padding': '30px', 
-            'backgroundColor': 'white', 
-            'borderRadius': '10px', 
-            'boxShadow': '0 6px 12px rgba(0, 0, 0, 0.1)'
+            'gridColumn': '1 / span 2',
+            'padding': PADDING,
+            'backgroundColor': 'white',
+            'borderRadius': BORDER_RADIUS,
+            'boxShadow': BOX_SHADOW,
+            'width': BARG_WIDTH + PADDING * 2
         }),
         
         html.Div([
@@ -40,22 +45,23 @@ def centralized_layout():
                 date=map_df['Date'].min().date(),
             ),
             dcc.Graph(id='temperature-map', style={
-                'height': '600px', 
-                'border': '1px solid #ddd', 
-                'borderRadius': '10px'
+                'height': MAP_HEIGHT,
+                'border': '1px solid #ddd',
+                'borderRadius': BORDER_RADIUS
             }),
         ], style={
-            'gridColumn': '1 / span 2', 
-            'padding': '30px', 
-            'backgroundColor': 'white', 
-            'borderRadius': '10px', 
-            'boxShadow': '0 6px 12px rgba(0, 0, 0, 0.1)'
+            'gridColumn': '1 / span 2',
+            'padding': PADDING,
+            'backgroundColor': 'white',
+            'borderRadius': BORDER_RADIUS,
+            'boxShadow': BOX_SHADOW,
+            'width': MAP_WIDTH + PADDING * 2
         }),
         
     ], style={
         'display': 'grid',
         'gridTemplateColumns': '1fr',
-        'gap': '30px',
-        'padding': '30px',
+        'gap': PADDING,
+        'padding': PADDING,
         'backgroundColor': '#f0f0f0'
     })
