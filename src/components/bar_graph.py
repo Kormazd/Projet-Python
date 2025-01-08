@@ -2,8 +2,8 @@ import pandas as pd
 from dash.dependencies import Input, Output
 import plotly.express as px
 
-BARG_HEIGHT = 300
-BARG_WIDTH = 1000
+BARG_HEIGHT = 400
+BARG_WIDTH = 550
 
 file_path = 'data/raw/temperature-quotidienne-departementale.csv'
 temperature_df = pd.read_csv(file_path, delimiter=';')

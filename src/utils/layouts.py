@@ -1,6 +1,7 @@
 from dash import dcc, html
 from src.components.bar_graph import BARG_HEIGHT, BARG_WIDTH, temperature_df as bargraph_df
 from src.components.map import MAP_HEIGHT, MAP_WIDTH, temperature_df as map_df
+from src.components.histogram import HISTOGRAM_HEIGHT, HISTOGRAM_WIDTH, temperature_df as histogram_df
 
 PADDING = 30
 BORDER_RADIUS = 10
@@ -21,18 +22,46 @@ def centralized_layout():
                 value=sorted(bargraph_df['Département'].unique())[0],
                 placeholder="Sélectionnez un département",
             ),
-            dcc.Graph(id='temperature-bargraph', style={
-                'height': BARG_HEIGHT,
-                'border': '1px solid #ddd',
-                'borderRadius': BORDER_RADIUS
-            }),
         ], style={
             'gridColumn': '1 / span 2',
-            'padding': PADDING,
-            'backgroundColor': 'white',
-            'borderRadius': BORDER_RADIUS,
-            'boxShadow': BOX_SHADOW,
-            'width': BARG_WIDTH + PADDING * 2
+            'padding': PADDING
+        }),
+        
+        html.Div([
+            html.Div([
+                html.H2("Graphique des Températures Moyennes", style={'color': '#444'}),
+                dcc.Graph(id='temperature-bargraph', style={
+                    'height': BARG_HEIGHT,
+                    'border': '1px solid #ddd',
+                    'borderRadius': BORDER_RADIUS
+                }),
+            ], style={
+                'width': '48%',
+                'display': 'inline-block',
+                'padding': '10px',
+                'backgroundColor': 'white',
+                'borderRadius': BORDER_RADIUS,
+                'boxShadow': BOX_SHADOW
+            }),
+            
+            html.Div([
+                html.H2("Histogramme des Températures", style={'color': '#444'}),
+                dcc.Graph(id='temperature-histogram', style={
+                    'height': HISTOGRAM_HEIGHT,
+                    'border': '1px solid #ddd',
+                    'borderRadius': BORDER_RADIUS
+                }),
+            ], style={
+                'width': '48%',
+                'display': 'inline-block',
+                'padding': '10px',
+                'backgroundColor': 'white',
+                'borderRadius': BORDER_RADIUS,
+                'boxShadow': BOX_SHADOW
+            })
+        ], style={
+            'gridColumn': '1 / span 2',
+            'padding': PADDING
         }),
         
         html.Div([
@@ -56,7 +85,7 @@ def centralized_layout():
             'borderRadius': BORDER_RADIUS,
             'boxShadow': BOX_SHADOW,
             'width': MAP_WIDTH + PADDING * 2
-        }),
+        })
         
     ], style={
         'display': 'grid',
