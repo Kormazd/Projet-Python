@@ -1,16 +1,18 @@
-from dash import Dash
-from src.utils.layouts import create_layout
+import dash
+from src.utils.layouts import centralized_layout
 from src.utils.callbacks import register_callbacks
 
-# Serveur dash
-app = Dash(__name__, suppress_callback_exceptions=True)
-app.title = "Températures en France"
+# Initialisation de l'application Dash
+app = dash.Dash(__name__, suppress_callback_exceptions=True)
+app.title = "Dashboard Météo"
 
-# Initialisation layouts
-app.layout = create_layout()
+# Définition du layout
+app.layout = centralized_layout()
 
-# Enregistrer callbacks
+# Enregistrement des callbacks
 register_callbacks(app)
 
-if __name__ == '__main__':
+# Lancement de l'application
+if __name__ == "__main__":
     app.run_server(debug=True, port=8050)
+
