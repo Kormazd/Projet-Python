@@ -31,7 +31,7 @@ def centralized_layout():
             html.Div([
                 html.H2("Graphique des Températures Moyennes", style={'color': '#444'}),
                 dcc.Graph(id='temperature-bargraph', style={
-                    'height': BARG_HEIGHT,
+                    'height': BARG_HEIGHT+10,
                     'border': '1px solid #ddd',
                     'borderRadius': BORDER_RADIUS
                 }),
@@ -47,7 +47,7 @@ def centralized_layout():
             html.Div([
                 html.H2("Histogramme des Températures", style={'color': '#444'}),
                 dcc.Graph(id='temperature-histogram', style={
-                    'height': HISTOGRAM_HEIGHT,
+                    'height': HISTOGRAM_HEIGHT+10,
                     'border': '1px solid #ddd',
                     'borderRadius': BORDER_RADIUS
                 }),

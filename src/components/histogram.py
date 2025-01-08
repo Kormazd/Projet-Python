@@ -2,7 +2,7 @@ import pandas as pd
 import plotly.express as px
 
 HISTOGRAM_HEIGHT = 400
-HISTOGRAM_WIDTH = 700  # Réduction pour s'adapter à l'affichage côte à côte
+HISTOGRAM_WIDTH = 550  
 
 file_path = 'data/raw/temperature-quotidienne-departementale.csv'
 temperature_df = pd.read_csv(file_path, delimiter=';')
@@ -16,7 +16,6 @@ def update_histogram(selected_departement):
         x='TMoy (°C)',
         nbins=20,
         labels={'TMoy (°C)': 'Température Moyenne (°C)', 'count': 'Nombre de Jours'},
-        title=f"Histogramme des Températures pour {selected_departement}"
     )
 
     fig.update_layout(
