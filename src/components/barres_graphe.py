@@ -9,6 +9,7 @@ temperature_df['Date'] = pd.to_datetime(temperature_df['Date'])
 def update_histogram(selected_departement):
     filtered_df = temperature_df[temperature_df['Département'] == selected_departement]
     daily_avg_temp = filtered_df.groupby('Date')['TMoy (°C)'].mean().reset_index()
+    
     fig = px.line(
         daily_avg_temp,
         x='Date',
@@ -16,9 +17,13 @@ def update_histogram(selected_departement):
         labels={'TMoy (°C)': 'Température Moyenne (°C)', 'Date': 'Date'},
         line_shape='linear'
     )
+    
+    # Ajustement dynamique avec une hauteur minimum pour éviter les sauts de taille trop brusques
     fig.update_layout(
         xaxis_title='Date',
         yaxis_title='Température Moyenne (°C)',
-        height=600
+        autosize=True,
+        height=max(500, min(900, len(daily_avg_temp) * 10)),  # Hauteur dynamique entre 500px et 900px
+        margin=dict(l=20, r=20, t=40, b=40)
     )
     return fig

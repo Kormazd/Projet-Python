@@ -1,5 +1,5 @@
 from dash.dependencies import Input, Output
-from src.components.histogram import update_histogram
+from src.components.barres_graphe import update_histogram
 from src.components.map import update_map
 from src.components.battle import update_battle
 
