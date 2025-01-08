@@ -1,6 +1,7 @@
 from dash import dcc, html
 from src.components.histogram import temperature_df as histogram_df
 from src.components.map import temperature_df as map_df
+#from src.components.highscores import get_highscores
 
 # Layout principal
 def create_layout():
@@ -11,6 +12,7 @@ def create_layout():
             children=[
                 dcc.Tab(label="Histogramme", value="histogram", style={'padding': '10px', 'fontWeight': 'bold'}),
                 dcc.Tab(label="Carte", value="map", style={'padding': '10px', 'fontWeight': 'bold'}),
+                dcc.Tab(label="Battle", value="battle", style={'padding': '10px', 'fontWeight': 'bold'})
             ],
             style={
                 'backgroundColor': '#f9f9f9',
@@ -48,3 +50,42 @@ def map_layout():
         ),
         dcc.Graph(id='temperature-map'),
     ])
+
+# Layout bataille des départements
+def battle_layout():
+    return html.Div([
+        html.H1("Bataille des Départements", style={'textAlign': 'center'}),
+        html.Div([
+            dcc.Dropdown(
+                id='dept1-dropdown',
+                options=[{'label': dept, 'value': dept} for dept in sorted(histogram_df['Département'].unique())],
+                value=sorted(histogram_df['Département'].unique())[0],
+                placeholder="Sélectionnez le premier département",
+            ),
+            dcc.Dropdown(
+                id='dept2-dropdown',
+                options=[{'label': dept, 'value': dept} for dept in sorted(histogram_df['Département'].unique())],
+                value=sorted(histogram_df['Département'].unique())[1],
+                placeholder="Sélectionnez le second département",
+            ),
+            dcc.RadioItems(
+                id='year-selector',
+                options=[
+                    {'label': '1 an', 'value': 1},
+                    {'label': '2 ans', 'value': 2},
+                    {'label': '3 ans', 'value': 3}
+                ],
+                value=1,
+                labelStyle={'margin-right': '10px'}
+            ),
+        ], style={'display': 'flex', 'flexDirection': 'column', 'gap': '10px', 'marginBottom': '20px'}),
+        html.Div(id='battle-results', style={'marginTop': '20px'}),
+    ])
+"""
+def highscores_layout():
+    return html.Div([
+        html.H1("High Scores des Températures", style={'textAlign': 'center'}),
+        html.Button("Mettre à jour", id="update-button", n_clicks=0),
+        html.Div(id="highscores-table")
+    ])
+"""
