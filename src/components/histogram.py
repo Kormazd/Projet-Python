@@ -9,10 +9,6 @@ temperature_df = pd.read_csv(file_path, delimiter=';')
 temperature_df['Date'] = pd.to_datetime(temperature_df['Date'])
 
 def update_histogram(selected_departement):
-    """
-    Renvoie la figure d'un histogramme des températures moyennes
-    pour un département sélectionné.
-    """
     filtered_df = temperature_df[temperature_df['Département'] == selected_departement]
     fig = px.histogram(
         filtered_df,
@@ -20,11 +16,19 @@ def update_histogram(selected_departement):
         nbins=20,
         labels={'TMoy (°C)': 'Température Moyenne (°C)', 'count': 'Nombre de Jours'},
     )
+    fig.update_traces(
+        hovertemplate=(
+            "<b>🌡️ Temp. :</b> %{x:.1f}°C<br>"
+            "<b>🔆 Nbr. jours:</b> %{y}<extra></extra>"
+        )
+    )
     fig.update_layout(
         xaxis_title='Température Moyenne (°C)',
         yaxis_title='Nombre de Jours',
         height=HISTOGRAM_HEIGHT,
         width=HISTOGRAM_WIDTH,
-        margin=dict(l=20, r=20, t=40, b=40)
+        margin=dict(l=20, r=20, t=40, b=40),
+        hoverlabel=dict(bgcolor="#444444")
     )
+
     return fig

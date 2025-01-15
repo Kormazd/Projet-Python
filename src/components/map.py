@@ -40,15 +40,18 @@ def update_map(selected_date):
         center={"lat": 46.603354, "lon": 2.5},
         hover_data={'Département': True, 'TMoy (°C)': ':.1f', 'TMin (°C)': ':.1f', 'TMax (°C)': ':.1f'}
     )
-    fig.data[0].hovertemplate = (
-        "<u><b>%{customdata[0]}</b></u><br>"
-        "<b>🌡️ Moyenne:</b> %{customdata[1]:.1f}°C<br>"
-        "<b>🌡️ Minimale:</b> %{customdata[2]:.1f}°C<br>"
-        "<b>🌡️ Maximale:</b> %{customdata[3]:.1f}°C<extra></extra>"
+    fig.update_traces(
+        hovertemplate=(
+            "<u><b>%{customdata[0]}</b></u><br>"
+            "<b>🌡️ Moy. :</b> %{customdata[1]:.1f}°C<br>"
+            "<b>🌡️ Min. :</b> %{customdata[2]:.1f}°C<br>"
+            "<b>🌡️ Max. :</b> %{customdata[3]:.1f}°C<extra></extra>"
+        )
     )
     fig.update_layout(
-        margin={"r": 0, "t": 0, "l": 0, "b": 0},
+        margin=dict(l=20, r=20, t=40, b=40),
         height=MAP_HEIGHT,
-        width=MAP_WIDTH
+        width=MAP_WIDTH,
+        hoverlabel=dict(bgcolor="#444444")
     )
     return fig

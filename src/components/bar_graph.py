@@ -10,10 +10,6 @@ temperature_df = pd.read_csv(file_path, delimiter=';')
 temperature_df['Date'] = pd.to_datetime(temperature_df['Date'])
 
 def update_bargraph(selected_departement):
-    """
-    Renvoie la figure d'un graphique en ligne des températures moyennes 
-    pour un département sélectionné.
-    """
     filtered_df = temperature_df[temperature_df['Département'] == selected_departement]
     daily_avg_temp = filtered_df.groupby('Date')['TMoy (°C)'].mean().reset_index()
     fig = px.line(
@@ -29,6 +25,14 @@ def update_bargraph(selected_departement):
         autosize=True,
         height=BARG_HEIGHT,
         width=BARG_WIDTH,
-        margin=dict(l=20, r=20, t=40, b=40)
+        margin=dict(l=20, r=20, t=40, b=40),
+        xaxis=dict(tickformat='%d %b. %Y'),
+        hoverlabel=dict(bgcolor="#444444")
+    )
+    fig.update_traces(
+        hovertemplate=(
+            "<b>📅 Date :</b> %{x|%d %b. %Y}<br>"
+            "<b>🌡️ Temp. :</b> %{y:.1f}°C<extra></extra>"
+        )
     )
     return fig

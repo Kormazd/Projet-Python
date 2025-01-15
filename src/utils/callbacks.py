@@ -2,7 +2,7 @@ from dash.dependencies import Input, Output
 from src.components.bar_graph import update_bargraph
 from src.components.map import update_map
 from src.components.histogram import update_histogram
-from src.components.camembert import update_pie_chart
+from src.components.camembert import update_camembert
 
 def register_callbacks(app):
     """
@@ -28,9 +28,10 @@ def register_callbacks(app):
     )
     def update_histogram_wrapper(selected_departement):
         return update_histogram(selected_departement)
+
     @app.callback(
-        Output('temperature-piechart', 'figure'),
+        Output('temperature-pie', 'figure'),
         [Input('date-picker', 'date')]
     )
-    def update_pie_chart_wrapper(selected_date):
-        return update_pie_chart(selected_date)
+    def update_camembert_wrapper(selected_date):
+        return update_camembert(selected_date)

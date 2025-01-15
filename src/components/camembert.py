@@ -1,9 +1,5 @@
-# src/components/pie_chart.py
 import pandas as pd
 import plotly.express as px
-
-HISTOGRAM_HEIGHT = 400
-HISTOGRAM_WIDTH = 550
 
 file_path = 'data/raw/temperature-quotidienne-departementale.csv'
 temperature_df = pd.read_csv(file_path, delimiter=';')
@@ -11,19 +7,39 @@ temperature_df['Date'] = pd.to_datetime(temperature_df['Date'])
 
 PIECHART_HEIGHT = 600
 
-def update_pie_chart(selected_date):
-    filtered_df = temperature_df[temperature_df['Date'] == pd.Timestamp(selected_date)]
-    temp_counts = filtered_df['TMoy (°C)'].value_counts(normalize=True).reset_index()
-    temp_counts.columns = ['Température (°C)', 'Proportion']
-    
+def update_camembert(selected_date):
+    selected_date = pd.to_datetime(selected_date)
+    filtered_df = temperature_df[temperature_df['Date'] == selected_date]
+    min_temp = int(filtered_df['TMoy (°C)'].min()) - 1
+    max_temp = int(filtered_df['TMoy (°C)'].max()) + 1
+    bins = range(min_temp, max_temp + 2, 2)
+    filtered_df['temp_bin'] = pd.cut(filtered_df['TMoy (°C)'], bins=bins, right=False)
+    filtered_df['temp_bin_str'] = filtered_df['temp_bin'].apply(lambda i: f"[{int(i.left)}, {int(i.right)}]°C")
+    temp_counts = filtered_df['temp_bin_str'].value_counts(normalize=True).reset_index()
+    temp_counts.columns = ['Intervalle de Température (°C)', 'Proportion']
+
     fig = px.pie(
         temp_counts,
         values='Proportion',
-        names='Température (°C)',
-        title=f"Répartition des températures pour la date {selected_date}",
+        names='Intervalle de Température (°C)',
     )
     fig.update_layout(
         height=PIECHART_HEIGHT,
-        margin=dict(l=20, r=20, t=40, b=40)
+        margin=dict(l=20, r=20, t=40, b=40),
+        hoverlabel=dict(bgcolor="#444444"),
+        legend=dict(
+            orientation="h",
+            yanchor="top",
+            y=-0.2,
+            xanchor="center",
+            x=0.5
+        )
     )
+    fig.update_traces(
+        hovertemplate=(
+            "<b>🌡️ Inter. :</b> %{label}<br>"
+            "<b>💯 Prop. :</b> %{percent:.1%}<extra></extra>"
+        )
+    )
+
     return fig
