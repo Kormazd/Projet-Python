@@ -16,6 +16,9 @@ with open("data/raw/departements-version-simplifiee.geojson", 'r', encoding='utf
     geojson_data = json.load(f)
 
 def update_map(selected_date):
+    """
+    Renvoie une carte choroplèthe des températures moyennes pour la date sélectionnée.
+    """
     selected_date = pd.to_datetime(selected_date) if selected_date else temperature_df['Date'].min()
     filtered_df = temperature_df[temperature_df['Date'] == selected_date]
     custom_colorscale = [
