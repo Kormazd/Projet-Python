@@ -12,16 +12,6 @@ def create_app():
     app.title = "Dashboard Météo"
     app.layout = html.Div([
         centralized_layout(),
-        html.Footer(
-            "Données météorologiques fournies par Météo France",
-            style={
-                'textAlign': 'center',
-                'padding': '10px',
-                'backgroundColor': '#1a1a1a',
-                'color': 'white',
-                'marginTop': '20px'
-            }
-        )
     ], style={
         'backgroundColor': '#fff',  
         'fontFamily': 'Arial, sans-serif'

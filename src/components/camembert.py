@@ -9,12 +9,34 @@ PIECHART_HEIGHT = 600
 
 def update_camembert(selected_date):
     selected_date = pd.to_datetime(selected_date)
-    filtered_df = temperature_df[temperature_df['Date'] == selected_date]
+    
+    filtered_df = temperature_df[temperature_df['Date'] == selected_date].copy()
+    
+    if filtered_df.empty:
+        fig = px.pie(
+            names=["Aucune donnée"],
+            values=[1],
+            title=f"Aucune donnée pour la date {selected_date.strftime('%Y-%m-%d')}"
+        )
+        fig.update_layout(
+            height=PIECHART_HEIGHT,
+            margin=dict(l=20, r=20, t=40, b=40),
+            hoverlabel=dict(bgcolor="#444444"),
+            legend=dict(
+                orientation="h",
+                yanchor="top",
+                y=-0.2,
+                xanchor="center",
+                x=0.5
+            )
+        )
+        return fig
+
     min_temp = int(filtered_df['TMoy (°C)'].min()) - 1
     max_temp = int(filtered_df['TMoy (°C)'].max()) + 1
     bins = range(min_temp, max_temp + 2, 2)
     filtered_df['temp_bin'] = pd.cut(filtered_df['TMoy (°C)'], bins=bins, right=False)
-    filtered_df['temp_bin_str'] = filtered_df['temp_bin'].apply(lambda i: f"[{int(i.left)}, {int(i.right)}]°C")
+    filtered_df['temp_bin_str'] = filtered_df['temp_bin'].apply(lambda i: f"{int(i.left)}~{int(i.right)} °C")
     temp_counts = filtered_df['temp_bin_str'].value_counts(normalize=True).reset_index()
     temp_counts.columns = ['Intervalle de Température (°C)', 'Proportion']
 
@@ -41,5 +63,4 @@ def update_camembert(selected_date):
             "<b>💯 Prop. :</b> %{percent:.1%}<extra></extra>"
         )
     )
-
     return fig

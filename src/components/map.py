@@ -16,18 +16,17 @@ with open("data/raw/departements-version-simplifiee.geojson", 'r', encoding='utf
     geojson_data = json.load(f)
 
 def update_map(selected_date):
-    """
-    Renvoie une carte choroplèthe des températures moyennes pour la date sélectionnée.
-    """
     selected_date = pd.to_datetime(selected_date) if selected_date else temperature_df['Date'].min()
     filtered_df = temperature_df[temperature_df['Date'] == selected_date]
+    
     custom_colorscale = [
-        [0, "#315D8A"],
+        [0, "#315D8A"],   # Froid (bleu)
         [0.45, "#ADCFE4"],
         [0.5, "#F0F0F0"],
         [0.55, "#FEA694"],
-        [1, "#DF3A41"]
+        [1, "#DF3A41"]    # Chaud (rouge)
     ]
+
     fig = px.choropleth_mapbox(
         filtered_df,
         geojson=geojson_data,
@@ -52,6 +51,14 @@ def update_map(selected_date):
         margin=dict(l=20, r=20, t=40, b=40),
         height=MAP_HEIGHT,
         width=MAP_WIDTH,
-        hoverlabel=dict(bgcolor="#444444")
+        hoverlabel=dict(bgcolor="#444444"),
+        coloraxis_colorbar=dict(
+            orientation='h',
+            title="Temp. (°C)",
+            x=0.5,
+            xanchor='center',
+            y=-0.15,
+            yanchor='top'
+        )
     )
     return fig
