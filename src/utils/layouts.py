@@ -36,10 +36,11 @@ def centralized_layout():
                     'borderRadius': BORDER_RADIUS
                 }),
             ], style={
-                'width': '48%',
+                'width': '47%',
                 'display': 'inline-block',
-                'padding': '10px',
+                'marginRight': '2%',
                 'backgroundColor': 'white',
+                'padding': '10px',
                 'borderRadius': BORDER_RADIUS,
                 'boxShadow': BOX_SHADOW
             }),
@@ -52,10 +53,11 @@ def centralized_layout():
                     'borderRadius': BORDER_RADIUS
                 }),
             ], style={
-                'width': '48%',
+                'width': '47%',
                 'display': 'inline-block',
-                'padding': '10px',
+                'marginLeft': '2%',
                 'backgroundColor': 'white',
+                'padding': '10px',
                 'borderRadius': BORDER_RADIUS,
                 'boxShadow': BOX_SHADOW
             })
