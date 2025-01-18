@@ -227,7 +227,7 @@ def centralized_layout():
                                 },
                                 children=[
                                     html.H3(
-                                        "Répartition (Camembert)",
+                                        "Répartition des Températures",
                                         style={
                                             "fontSize": "1.1em",
                                             "fontWeight": "bold",

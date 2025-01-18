@@ -52,6 +52,13 @@ def update_camembert(selected_date):
     )
 
     # Configuration des options de mise en page
+    fig.update_traces(
+        hovertemplate=(
+            "<b>🌡️ Temp. : </b>%{label}<br>"
+            "<b>📊 Prop. : </b>%{percent:.1%}"
+        )
+    )
+    
     fig.update_layout(
         autosize=True,
         margin=dict(l=5, r=5, t=10, b=10),
