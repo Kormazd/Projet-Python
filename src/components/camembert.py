@@ -5,8 +5,6 @@ file_path = 'data/raw/temperature-quotidienne-departementale.csv'
 temperature_df = pd.read_csv(file_path, delimiter=';')
 temperature_df['Date'] = pd.to_datetime(temperature_df['Date'])
 
-PIECHART_HEIGHT = 600
-
 def update_camembert(selected_date):
     selected_date = pd.to_datetime(selected_date)
     
@@ -19,7 +17,7 @@ def update_camembert(selected_date):
             title=f"Aucune donnée pour la date {selected_date.strftime('%Y-%m-%d')}"
         )
         fig.update_layout(
-            height=PIECHART_HEIGHT,
+            autosize=True,  # <-- Ajout
             margin=dict(l=20, r=20, t=40, b=40),
             hoverlabel=dict(bgcolor="#444444"),
             legend=dict(
@@ -46,20 +44,13 @@ def update_camembert(selected_date):
         names='Intervalle de Température (°C)',
     )
     fig.update_layout(
-        height=PIECHART_HEIGHT,
-        margin=dict(l=20, r=20, t=40, b=40),
-        hoverlabel=dict(bgcolor="#444444"),
-        legend=dict(
-            orientation="h",
-            yanchor="top",
-            y=-0.2,
-            xanchor="center",
-            x=0.5
-        )
+        autosize=True,  # <-- Ajout
+        margin=dict(l=5, r=5, t=10, b=10),
+        hoverlabel=dict(bgcolor="#444444")
     )
     fig.update_traces(
         hovertemplate=(
-            "<b>🌡️ Inter. :</b> %{label}<br>"
+            "<b>🌡️ Temp. :</b> %{label}"
             "<b>💯 Prop. :</b> %{percent:.1%}<extra></extra>"
         )
     )

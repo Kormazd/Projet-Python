@@ -2,9 +2,6 @@ import pandas as pd
 import json
 import plotly.express as px
 
-MAP_HEIGHT = 500
-MAP_WIDTH = 500
-
 file_path = 'data/raw/temperature-quotidienne-departementale.csv'
 temperature_df = pd.read_csv(file_path, delimiter=';')
 temperature_df['Date'] = pd.to_datetime(temperature_df['Date'])
@@ -35,7 +32,7 @@ def update_map(selected_date):
         color='TMoy (°C)',
         mapbox_style="carto-positron",
         color_continuous_scale=custom_colorscale,
-        zoom=4.2,
+        zoom=3.9,
         center={"lat": 46.603354, "lon": 2.5},
         hover_data={'Département': True, 'TMoy (°C)': ':.1f', 'TMin (°C)': ':.1f', 'TMax (°C)': ':.1f'}
     )
@@ -48,17 +45,8 @@ def update_map(selected_date):
         )
     )
     fig.update_layout(
-        margin=dict(l=20, r=20, t=40, b=40),
-        height=MAP_HEIGHT,
-        width=MAP_WIDTH,
-        hoverlabel=dict(bgcolor="#444444"),
-        coloraxis_colorbar=dict(
-            orientation='h',
-            title="Temp. (°C)",
-            x=0.5,
-            xanchor='center',
-            y=-0.15,
-            yanchor='top'
-        )
+        autosize=True,  # <-- On active l'ajustement automatique
+        margin=dict(l=5, r=5, t=10, b=10),
+        hoverlabel=dict(bgcolor="#444444")
     )
     return fig

@@ -1,9 +1,6 @@
 import pandas as pd
 import plotly.express as px
 
-BARG_HEIGHT = 400
-BARG_WIDTH = 550
-
 file_path = 'data/raw/temperature-quotidienne-departementale.csv'
 temperature_df = pd.read_csv(file_path, delimiter=';')
 temperature_df['Date'] = pd.to_datetime(temperature_df['Date'])
@@ -21,10 +18,8 @@ def update_bargraph(selected_departement):
     fig.update_layout(
         xaxis_title='Date',
         yaxis_title='Température Moyenne (°C)',
-        autosize=True,
-        height=BARG_HEIGHT,
-        width=BARG_WIDTH,
-        margin=dict(l=20, r=20, t=40, b=40),
+        autosize=True,  # <-- Ajout
+        margin=dict(l=5, r=5, t=10, b=10),
         xaxis=dict(tickformat='%d %b. %Y'),
         hoverlabel=dict(bgcolor="#444444")
     )

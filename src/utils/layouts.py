@@ -1,6 +1,6 @@
 from dash import dcc, html
 from src.components.bar_graph import temperature_df as bargraph_df
-from src.components.map import temperature_df as map_df 
+from src.components.map import temperature_df as map_df
 
 TITLE_STYLE = {
     "fontSize": "1.4em",
@@ -12,40 +12,75 @@ TITLE_STYLE = {
 NEOMORPHISM_BOX_STYLE = {
     "backgroundColor": "#ffffff",
     "borderRadius": "12px",
-    "boxShadow": "7px 7px 14px #c5c5c5, -7px -7px 14px #ffffff",
-    "padding": "20px",
-    "display": "flex",
-    "flexDirection": "column"
+    "boxShadow": "0 5px 15px rgba(0, 0, 0, 0.2)",  # Ombres plus uniformes
+    "padding": "20px"
 }
 
 def centralized_layout():
     return html.Div(
-        [
+        style={
+            # Conteneur principal en flex colonne
+            "display": "flex",
+            "flexDirection": "column",
+            "height": "100vh",
+            "width": "98vw",
+            "margin": "auto",
+            "padding": "20px 0",  # Espaces en haut et en bas
+            "backgroundColor": "#fff",  # Fond neutre
+            "fontFamily": "Arial, sans-serif",
+        },
+        children=[
+            # 1) Barre de titre (en haut)
             html.Div(
                 [
                     html.H2("Dashboard Météo", style=TITLE_STYLE)
                 ],
                 style={
                     **NEOMORPHISM_BOX_STYLE,
-                    "width": "250px",
-                    "margin": "0 auto 20px",
-                    "justifyContent": "center",
-                    "alignItems": "center"
+                    "flex": "0",
+                    "textAlign": "center",
+                    "margin": "0 auto 20px"
                 }
             ),
 
+            # 2) Conteneur principal (2 lignes flexibles)
             html.Div(
-                [
+                style={
+                    "display": "flex",
+                    "flexDirection": "column",
+                    "flex": "1",
+                    "gap": "10px"
+                },
+                children=[
+                    # -----------------------------
+                    # LIGNE 1 : Dépt. + Bargraph + Histogram
+                    # -----------------------------
                     html.Div(
-                        [
+                        style={
+                            "display": "flex",
+                            "flexDirection": "row",
+                            "flex": "1",
+                            "gap": "10px"  # Espaces entre les boîtes
+                        },
+                        children=[
+                            # Boîte sélection département
                             html.Div(
-                                [
-                                    html.H3("Sélection Département", style={
-                                        "fontSize": "1.1em",
-                                        "fontWeight": "bold",
-                                        "color": "#333",
-                                        "marginBottom": "10px"
-                                    }),
+                                style={
+                                    **NEOMORPHISM_BOX_STYLE,
+                                    "flex": "0.3",
+                                    "display": "flex",
+                                    "flexDirection": "column"
+                                },
+                                children=[
+                                    html.H3(
+                                        "Sélection Département",
+                                        style={
+                                            "fontSize": "1.1em",
+                                            "fontWeight": "bold",
+                                            "color": "#333",
+                                            "marginBottom": "10px"
+                                        }
+                                    ),
                                     dcc.Dropdown(
                                         id="departement-dropdown",
                                         options=[
@@ -63,85 +98,98 @@ def centralized_layout():
                                             "margin": "0 auto"
                                         }
                                     ),
-                                ],
-                                style={
-                                    "flex": "0.3",
-                                    "marginRight": "10px",
-                                    **NEOMORPHISM_BOX_STYLE
-                                }
+                                ]
                             ),
+
+                            # Bargraph
                             html.Div(
-                                [
-                                    html.Div(
-                                        [
-                                            html.H3(
-                                                "Graphique des Températures",
-                                                style={
-                                                    "fontSize": "1.1em",
-                                                    "fontWeight": "bold",
-                                                    "color": "#333",
-                                                    "marginBottom": "10px"
-                                                }
-                                            ),
-                                            dcc.Graph(
-                                                id="temperature-bargraph",
-                                                style={"width": "100%", "height": "100%"}
-                                            ),
-                                        ],
-                                        style={
-                                            "flex": "1",
-                                            "marginRight": "10px",
-                                            **NEOMORPHISM_BOX_STYLE
-                                        }
-                                    ),
-                                    html.Div(
-                                        [
-                                            html.H3(
-                                                "Histogramme des Températures",
-                                                style={
-                                                    "fontSize": "1.1em",
-                                                    "fontWeight": "bold",
-                                                    "color": "#333",
-                                                    "marginBottom": "10px"
-                                                }
-                                            ),
-                                            dcc.Graph(
-                                                id="temperature-histogram",
-                                                style={"width": "100%", "height": "100%"}
-                                            ),
-                                        ],
-                                        style={
-                                            "flex": "1",
-                                            "marginLeft": "10px",
-                                            **NEOMORPHISM_BOX_STYLE
-                                        }
-                                    ),
-                                ],
                                 style={
+                                    **NEOMORPHISM_BOX_STYLE,
+                                    "flex": "1",
                                     "display": "flex",
-                                    "flex": "0.7",
-                                    "gap": "10px"
-                                }
+                                    "flexDirection": "column"
+                                },
+                                children=[
+                                    html.H3(
+                                        "Graphique des Températures",
+                                        style={
+                                            "fontSize": "1.1em",
+                                            "fontWeight": "bold",
+                                            "color": "#333",
+                                            "marginBottom": "10px"
+                                        }
+                                    ),
+                                    dcc.Graph(
+                                        id="temperature-bargraph",
+                                        config={"responsive": True},
+                                        style={
+                                            "width": "100%",
+                                            "flex": "1"
+                                        }
+                                    ),
+                                ]
                             ),
-                        ],
-                        style={
-                            "display": "flex",
-                            "flex": "1",
-                            "gap": "10px",
-                            "marginBottom": "20px"
-                        }
+
+                            # Histogram
+                            html.Div(
+                                style={
+                                    **NEOMORPHISM_BOX_STYLE,
+                                    "flex": "1",
+                                    "display": "flex",
+                                    "flexDirection": "column"
+                                },
+                                children=[
+                                    html.H3(
+                                        "Histogramme des Températures",
+                                        style={
+                                            "fontSize": "1.1em",
+                                            "fontWeight": "bold",
+                                            "color": "#333",
+                                            "marginBottom": "10px"
+                                        }
+                                    ),
+                                    dcc.Graph(
+                                        id="temperature-histogram",
+                                        config={"responsive": True},
+                                        style={
+                                            "width": "100%",
+                                            "flex": "1"
+                                        }
+                                    ),
+                                ]
+                            ),
+                        ]
                     ),
 
+                    # -----------------------------
+                    # LIGNE 2 : Date + Carte + Camembert
+                    # -----------------------------
                     html.Div(
-                        [
+                        style={
+                            "display": "flex",
+                            "flexDirection": "row",
+                            "flex": "1",
+                            "gap": "10px"
+                        },
+                        children=[
+                            # Boîte sélection date
                             html.Div(
-                                [
-                                    html.H3("Sélection Date", style={
-                                        "fontSize": "1.1em",
-                                        "fontWeight": "bold",
-                                        "color": "#333",
-                                        "marginBottom": "10px"
-                                    }),
+                                style={
+                                    **NEOMORPHISM_BOX_STYLE,
+                                    "flex": "0.3",
+                                    "display": "flex",
+                                    "flexDirection": "column"
+                                },
+                                children=[
+                                    html.H3(
+                                        "Sélection Date",
+                                        style={
+                                            "fontSize": "1.1em",
+                                            "fontWeight": "bold",
+                                            "color": "#333",
+                                            "marginBottom": "10px"
+                                        }
+                                    ),
                                     dcc.DatePickerSingle(
                                         id="date-picker",
                                         min_date_allowed=map_df["Date"].min().date(),
@@ -153,90 +201,69 @@ def centralized_layout():
                                             "width": "200px"
                                         }
                                     ),
-                                ],
-                                style={
-                                    "flex": "0.3",
-                                    "marginRight": "10px",
-                                    **NEOMORPHISM_BOX_STYLE
-                                }
+                                ]
                             ),
+
+                            # Carte
                             html.Div(
-                                [
-                                    html.Div(
-                                        [
-                                            html.H3(
-                                                "Carte des Températures",
-                                                style={
-                                                    "fontSize": "1.1em",
-                                                    "fontWeight": "bold",
-                                                    "color": "#333",
-                                                    "marginBottom": "10px"
-                                                }
-                                            ),
-                                            dcc.Graph(
-                                                id="temperature-map",
-                                                style={"width": "100%", "height": "100%"}
-                                            ),
-                                        ],
-                                        style={
-                                            "flex": "1",
-                                            "marginRight": "10px",
-                                            **NEOMORPHISM_BOX_STYLE
-                                        }
-                                    ),
-                                    html.Div(
-                                        [
-                                            html.H3(
-                                                "Répartition (Camembert)",
-                                                style={
-                                                    "fontSize": "1.1em",
-                                                    "fontWeight": "bold",
-                                                    "color": "#333",
-                                                    "marginBottom": "10px"
-                                                }
-                                            ),
-                                            dcc.Graph(
-                                                id="temperature-pie",
-                                                style={"width": "100%", "height": "100%"}
-                                            ),
-                                        ],
-                                        style={
-                                            "flex": "1",
-                                            "marginLeft": "10px",
-                                            **NEOMORPHISM_BOX_STYLE
-                                        }
-                                    ),
-                                ],
                                 style={
+                                    **NEOMORPHISM_BOX_STYLE,
+                                    "flex": "1",
                                     "display": "flex",
-                                    "flex": "0.7",
-                                    "gap": "10px"
-                                }
+                                    "flexDirection": "column"
+                                },
+                                children=[
+                                    html.H3(
+                                        "Carte des Températures",
+                                        style={
+                                            "fontSize": "1.1em",
+                                            "fontWeight": "bold",
+                                            "color": "#333",
+                                            "marginBottom": "10px"
+                                        }
+                                    ),
+                                    dcc.Graph(
+                                        id="temperature-map",
+                                        config={"responsive": True},
+                                        style={
+                                            "width": "100%",
+                                            "flex": "1"
+                                        }
+                                    ),
+                                ]
                             ),
-                        ],
-                        style={
-                            "display": "flex",
-                            "flex": "1",
-                            "gap": "10px"
-                        }
+
+                            # Camembert
+                            html.Div(
+                                style={
+                                    **NEOMORPHISM_BOX_STYLE,
+                                    "flex": "1",
+                                    "display": "flex",
+                                    "flexDirection": "column"
+                                },
+                                children=[
+                                    html.H3(
+                                        "Répartition (Camembert)",
+                                        style={
+                                            "fontSize": "1.1em",
+                                            "fontWeight": "bold",
+                                            "color": "#333",
+                                            "marginBottom": "10px"
+                                        }
+                                    ),
+                                    dcc.Graph(
+                                        id="temperature-pie",
+                                        config={"responsive": True},
+                                        style={
+                                            "width": "100%",
+                                            "flex": "1"
+                                        }
+                                    ),
+                                ]
+                            ),
+                        ]
                     ),
-                ],
-                style={
-                    "display": "flex",
-                    "flexDirection": "column",
-                    "flex": "1"
-                }
+                ]
             ),
-        ],
-        style={
-            # On utilise minHeight pour autoriser la page à grandir
-            "minHeight": "100vh",  
-            "width": "98vw",
-            "margin": "auto",
-            "display": "flex",
-            "flexDirection": "column",
-            "fontFamily": "Arial, sans-serif",
-            # Autorise le défilement vertical si le contenu dépasse la fenêtre
-            "overflowY": "auto"
-        }
+        ]
     )
