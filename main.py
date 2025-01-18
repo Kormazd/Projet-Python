@@ -21,4 +21,4 @@ def create_app():
 if __name__ == "__main__":
     # Lancement du serveur en mode debug
     app = create_app()
-    app.run_server(debug=True, port=8050)
+    app.run_server(debug=False, port=8050)
