@@ -1,5 +1,4 @@
 import pandas as pd
-from dash.dependencies import Input, Output
 import plotly.express as px
 
 BARG_HEIGHT = 400

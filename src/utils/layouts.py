@@ -1,7 +1,6 @@
 from dash import dcc, html
 from src.components.bar_graph import temperature_df as bargraph_df
-from src.components.map import temperature_df as map_df
-from src.components.histogram import temperature_df as histogram_df
+from src.components.map import temperature_df as map_df 
 
 TITLE_STYLE = {
     "fontSize": "1.4em",
